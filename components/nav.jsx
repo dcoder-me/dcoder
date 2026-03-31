@@ -1,156 +1,117 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useActiveSection } from "./use-active-section";
 
 const NAV_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Work", href: "#work" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "about" },
+  { label: "Services", href: "services" },
+  { label: "Stack", href: "stack" },
+  { label: "Experience", href: "experience" },
+  { label: "Contact", href: "contact" },
 ];
 
 /**
+ * @param {string} href
+ * @returns {void}
+ */
+const scrollTo = (href) => {
+  const el = document.getElementById(href);
+  if (el) el.scrollIntoView({ behavior: "smooth" });
+};
+
+/**
+ * Mobile-only top navigation bar with hamburger drawer.
+ * Hidden on lg+ (desktop uses Sidebar).
  * @returns {JSX.Element}
  */
 export const Nav = () => {
-  const [activeSection, setActiveSection] = useState("");
-  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const active = useActiveSection();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-
-      const sections = NAV_LINKS.map((link) =>
-        document.querySelector(link.href)
-      ).filter(Boolean);
-
-      const current = sections.find((section) => {
-        const rect = section.getBoundingClientRect();
-        return rect.top <= 120 && rect.bottom > 120;
-      });
-
-      if (current) setActiveSection(`#${current.id}`);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const handleClick = (e, href) => {
-    e.preventDefault();
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+  const handleNav = (href) => {
+    scrollTo(href);
+    setOpen(false);
   };
 
   return (
-    <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, delay: 0.2 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-navy-900/80 backdrop-blur-md border-b border-navy-700/50"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
-          className="font-mono text-sm text-cyan-400 transition-colors duration-200 hover:text-cyan-500 cursor-pointer"
-        >
-          dcoder.me
-        </a>
-
-        <ul className="hidden items-center gap-8 sm:flex">
-          {NAV_LINKS.map(({ label, href }) => (
-            <li key={href}>
-              <a
-                href={href}
-                onClick={(e) => handleClick(e, href)}
-                className={`relative font-mono text-xs uppercase tracking-widest transition-colors duration-200 cursor-pointer ${
-                  activeSection === href
-                    ? "text-cyan-400"
-                    : "text-slate-400 hover:text-slate-200"
-                }`}
-              >
-                {label}
-                {activeSection === href && (
-                  <motion.span
-                    layoutId="nav-indicator"
-                    className="absolute -bottom-1 left-0 right-0 h-px bg-cyan-400"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        {/* Mobile nav */}
-        <MobileNav activeSection={activeSection} onNavigate={handleClick} />
-      </nav>
-    </motion.header>
-  );
-};
-
-const MobileNav = ({ activeSection, onNavigate }) => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="sm:hidden">
-      <button
-        onClick={() => setOpen(!open)}
-        className="relative z-50 flex h-10 w-10 items-center justify-center cursor-pointer"
-        aria-label={open ? "Close menu" : "Open menu"}
+    <header className="fixed left-0 right-0 top-0 z-50 lg:hidden">
+      <div
+        className="flex items-center justify-between border-b border-void-700 bg-void-900/90 px-5 py-4 backdrop-blur-md"
       >
-        <div className="flex flex-col gap-1.5">
-          <span
-            className={`block h-px w-6 bg-slate-200 transition-all duration-300 ${
-              open ? "translate-y-[3.5px] rotate-45" : ""
-            }`}
-          />
-          <span
-            className={`block h-px w-6 bg-slate-200 transition-all duration-300 ${
-              open ? "-translate-y-[3.5px] -rotate-45" : ""
-            }`}
-          />
-        </div>
-      </button>
-
-      {open && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-40 flex items-center justify-center bg-navy-900/95 backdrop-blur-md"
+        {/* DC logo */}
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="flex h-9 w-9 items-center justify-center rounded-full cursor-pointer"
+          style={{ background: "linear-gradient(135deg, #22D3EE, #A78BFA)" }}
+          aria-label="Scroll to top"
         >
-          <ul className="flex flex-col items-center gap-8">
-            {NAV_LINKS.map(({ label, href }) => (
-              <li key={href}>
-                <a
-                  href={href}
-                  onClick={(e) => {
-                    onNavigate(e, href);
-                    setOpen(false);
-                  }}
-                  className={`font-mono text-sm uppercase tracking-widest transition-colors duration-200 cursor-pointer ${
-                    activeSection === href
-                      ? "text-cyan-400"
-                      : "text-slate-400 hover:text-slate-200"
-                  }`}
-                >
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-      )}
-    </div>
+          <span className="font-heading text-sm font-bold text-void-950">
+            DC
+          </span>
+        </button>
+
+        {/* Hamburger */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] cursor-pointer"
+          aria-label={open ? "Close menu" : "Open menu"}
+        >
+          <span
+            className={`block h-[1.5px] w-5 bg-slate-300 transition-all duration-300 ${
+              open ? "translate-y-[6.5px] rotate-45" : ""
+            }`}
+          />
+          <span
+            className={`block h-[1.5px] w-5 bg-slate-300 transition-all duration-300 ${
+              open ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`block h-[1.5px] w-5 bg-slate-300 transition-all duration-300 ${
+              open ? "-translate-y-[6.5px] -rotate-45" : ""
+            }`}
+          />
+        </button>
+      </div>
+
+      {/* Drawer */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="border-b border-void-700 bg-void-900/95 px-5 py-6 backdrop-blur-md"
+          >
+            <ul className="space-y-1">
+              {NAV_LINKS.map(({ label, href }) => (
+                <li key={href}>
+                  <button
+                    onClick={() => handleNav(href)}
+                    className={`flex w-full items-center gap-3 rounded-lg px-3 py-3 text-left transition-all duration-200 cursor-pointer ${
+                      active === href
+                        ? "bg-void-700 text-slate-100"
+                        : "text-slate-400 hover:text-slate-200"
+                    }`}
+                  >
+                    <span
+                      className={`h-px transition-all duration-200 ${
+                        active === href ? "w-5 bg-cyan-400" : "w-3 bg-void-600"
+                      }`}
+                    />
+                    <span className="font-mono text-xs uppercase tracking-[0.15em]">
+                      {label}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 };

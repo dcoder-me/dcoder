@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --background: #0F172A;
-  --foreground: #E2E8F0;
-  --surface: #1E293B;
-  --border: #334155;
-  --text-muted: #94A3B8;
-  --accent: #22D3EE;
-  --accent-hover: #06B6D4;
+  --background: #060608;
+  --sidebar: #0C0C10;
+  --surface: #111115;
+  --border: #1A1A22;
+  --border-subtle: #252530;
+  --foreground: #EDEDEF;
+  --text-muted: #7A7A85;
+  --accent-cyan: #22D3EE;
+  --accent-violet: #A78BFA;
+  --accent-green: #34D399;
 }
 
 * {
@@ -26,32 +29,67 @@ html {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-jakarta), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: rgba(34, 211, 238, 0.2);
-  color: #E2E8F0;
+  background: rgba(34, 211, 238, 0.15);
+  color: #ededef;
 }
 
 /* scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0F172A;
+  background: #060608;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 3px;
+  background: #252530;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #32323e;
+}
+
+@layer utilities {
+  .gradient-border {
+    background:
+      linear-gradient(var(--surface), var(--surface)) padding-box,
+      linear-gradient(135deg, #22d3ee, #a78bfa) border-box;
+    border: 1px solid transparent;
+  }
+
+  .gradient-border-subtle {
+    background:
+      linear-gradient(var(--surface), var(--surface)) padding-box,
+      linear-gradient(135deg, #1a1a22, #1a1a22) border-box;
+    border: 1px solid transparent;
+    transition: background 0.35s ease;
+  }
+
+  .gradient-border-subtle:hover {
+    background:
+      linear-gradient(var(--surface), var(--surface)) padding-box,
+      linear-gradient(135deg, #22d3ee, #a78bfa) border-box;
+    border: 1px solid transparent;
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

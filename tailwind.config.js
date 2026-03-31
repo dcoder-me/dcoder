@@ -8,32 +8,28 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        navy: {
-          900: "#0F172A",
-          800: "#1E293B",
-          700: "#334155",
-          600: "#475569",
-        },
-        slate: {
-          200: "#E2E8F0",
-          300: "#CBD5E1",
-          400: "#94A3B8",
-          500: "#64748B",
-        },
-        cyan: {
-          400: "#22D3EE",
-          500: "#06B6D4",
-          600: "#0891B2",
-          900: "#164E63",
+        void: {
+          950: "#060608",
+          900: "#0C0C10",
+          800: "#111115",
+          700: "#1A1A22",
+          600: "#252530",
+          500: "#32323E",
         },
       },
       fontFamily: {
-        heading: ["var(--font-space-grotesk)", "sans-serif"],
-        body: ["var(--font-inter)", "sans-serif"],
+        heading: ["var(--font-syne)", "sans-serif"],
+        body: ["var(--font-jakarta)", "sans-serif"],
         mono: ["var(--font-jetbrains-mono)", "monospace"],
       },
+      keyframes: {
+        "pulse-dot": {
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: "0.5", transform: "scale(0.85)" },
+        },
+      },
       animation: {
-        "spotlight": "spotlight 1s ease forwards",
+        "pulse-dot": "pulse-dot 2s ease-in-out infinite",
       },
     },
   },

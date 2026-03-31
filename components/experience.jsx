@@ -1,6 +1,7 @@
 "use client";
 
-import { FadeIn, StaggerContainer, StaggerItem } from "./fade-in";
+import { FadeIn } from "./fade-in";
+import { SectionLabel } from "./section-label";
 
 const EXPERIENCE = [
   {
@@ -14,14 +15,7 @@ const EXPERIENCE = [
       "Implement performance-optimized builds with ISR, image optimization, and Vercel deployment pipelines achieving consistent Lighthouse scores above 90.",
       "Collaborate with design and marketing teams to translate wireframes and business requirements into responsive, accessible web experiences.",
     ],
-    tech: [
-      "React",
-      "Next.js",
-      "Prismic",
-      "Contentful",
-      "Tailwind CSS",
-      "Vercel",
-    ],
+    tech: ["React", "Next.js", "Prismic", "Contentful", "Tailwind CSS", "Vercel"],
   },
 ];
 
@@ -29,28 +23,23 @@ const EXPERIENCE = [
  * @returns {JSX.Element}
  */
 export const Experience = () => (
-  <section id="experience" className="px-6 py-24 lg:py-32">
-    <div className="mx-auto max-w-6xl">
-      <FadeIn>
-        <h2 className="flex items-center gap-3 font-heading text-2xl font-semibold text-slate-200 sm:text-3xl">
-          <span className="font-mono text-base font-normal text-cyan-400">
-            03.
-          </span>
-          Experience
-          <span
-            className="ml-2 hidden h-px flex-1 bg-navy-700 sm:block"
-            aria-hidden="true"
-          />
-        </h2>
-      </FadeIn>
+  <section id="experience" className="px-8 py-20 lg:px-14 lg:py-28">
+    <FadeIn>
+      <SectionLabel>Experience</SectionLabel>
+    </FadeIn>
 
-      <StaggerContainer className="mt-12 space-y-12" staggerDelay={0.15}>
-        {EXPERIENCE.map((job) => (
-          <StaggerItem key={`${job.company}-${job.role}`}>
-            <ExperienceItem {...job} />
-          </StaggerItem>
-        ))}
-      </StaggerContainer>
+    <FadeIn delay={0.05}>
+      <h2 className="mb-12 font-heading text-3xl font-bold text-slate-100 sm:text-4xl">
+        Where I've Worked
+      </h2>
+    </FadeIn>
+
+    <div className="space-y-10">
+      {EXPERIENCE.map((job, i) => (
+        <FadeIn key={`${job.company}-${job.role}`} delay={0.1 + i * 0.08}>
+          <ExperienceItem {...job} />
+        </FadeIn>
+      ))}
     </div>
   </section>
 );
@@ -60,52 +49,56 @@ export const Experience = () => (
  * @returns {JSX.Element}
  */
 const ExperienceItem = ({ role, company, url, period, description, tech }) => (
-  <div className="group grid gap-4 sm:grid-cols-[140px_1fr]">
-    <p className="pt-1 font-mono text-xs uppercase tracking-wide text-slate-500">
-      {period}
-    </p>
+  <div className="relative pl-6 before:absolute before:left-0 before:top-2 before:h-[calc(100%-0.5rem)] before:w-px before:bg-void-600">
+    {/* Timeline dot */}
+    <div
+      className="absolute left-[-4px] top-[7px] h-2 w-2 rounded-full"
+      style={{ background: "linear-gradient(135deg, #22D3EE, #A78BFA)" }}
+    />
 
-    <div>
-      <h3 className="font-heading text-lg font-semibold text-slate-200">
-        {role}{" "}
-        <span className="text-cyan-400">
-          @{" "}
+    <div className="flex flex-wrap items-start justify-between gap-3">
+      <div>
+        <h3 className="font-heading text-lg font-semibold text-slate-100">
+          {role}{" "}
+          <span className="text-slate-500">@</span>{" "}
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors duration-200 hover:text-cyan-500 cursor-pointer"
+            className="text-cyan-400 transition-colors duration-200 hover:text-cyan-300 cursor-pointer"
           >
             {company}
           </a>
+        </h3>
+      </div>
+
+      <span className="rounded-full border border-void-600 bg-void-800 px-3 py-1 font-mono text-xs text-slate-500">
+        {period}
+      </span>
+    </div>
+
+    <ul className="mt-5 space-y-3">
+      {description.map((item, i) => (
+        <li key={i} className="flex gap-3 text-sm leading-relaxed text-slate-400">
+          <span
+            className="mt-[6px] block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-cyan-400/50"
+            aria-hidden="true"
+          />
+          {item}
+        </li>
+      ))}
+    </ul>
+
+    <div className="mt-5 flex flex-wrap gap-2">
+      {tech.map((t) => (
+        <span
+          key={t}
+          className="rounded-md bg-cyan-400/8 px-2.5 py-1 font-mono text-xs text-cyan-400"
+          style={{ background: "rgba(34,211,238,0.07)" }}
+        >
+          {t}
         </span>
-      </h3>
-
-      <ul className="mt-4 space-y-3">
-        {description.map((item, i) => (
-          <li
-            key={i}
-            className="flex gap-3 text-sm leading-relaxed text-slate-400"
-          >
-            <span
-              className="mt-1.5 block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-cyan-400"
-              aria-hidden="true"
-            />
-            {item}
-          </li>
-        ))}
-      </ul>
-
-      <ul className="mt-4 flex flex-wrap gap-2">
-        {tech.map((t) => (
-          <li
-            key={t}
-            className="rounded-full bg-cyan-400/10 px-3 py-1 font-mono text-xs text-cyan-400"
-          >
-            {t}
-          </li>
-        ))}
-      </ul>
+      ))}
     </div>
   </div>
 );

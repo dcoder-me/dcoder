@@ -1,15 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { VolumetricLight } from "./volumetric-light";
 
-const LINE_VARIANTS = {
-  hidden: { opacity: 0, y: 20 },
+const VARIANTS = {
+  hidden: { opacity: 0, y: 24 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.4 + i * 0.1,
-      duration: 0.6,
+      delay: 0.2 + i * 0.12,
+      duration: 0.7,
       ease: [0.16, 1, 0.3, 1],
     },
   }),
@@ -19,55 +20,53 @@ const LINE_VARIANTS = {
  * @returns {JSX.Element}
  */
 export const Hero = () => (
-  <section className="relative flex min-h-[100dvh] items-center px-6">
-    <div className="mx-auto w-full max-w-6xl">
+  <section className="relative overflow-hidden px-8 pb-24 pt-16 lg:px-14 lg:pb-32 lg:pt-28">
+    <VolumetricLight />
+
+    <div className="relative max-w-2xl">
       <motion.p
         custom={0}
         initial="hidden"
         animate="visible"
-        variants={LINE_VARIANTS}
-        className="mb-4 font-mono text-sm text-cyan-400"
+        variants={VARIANTS}
+        className="font-mono text-xs uppercase tracking-[0.2em] text-cyan-400"
       >
-        Hi, my name is
+        Full-Stack Web Developer
       </motion.p>
 
       <motion.h1
         custom={1}
         initial="hidden"
         animate="visible"
-        variants={LINE_VARIANTS}
-        className="font-heading text-5xl font-bold leading-tight tracking-tight text-slate-200 sm:text-6xl lg:text-7xl"
+        variants={VARIANTS}
+        className="mt-5 font-heading text-5xl font-extrabold leading-[1.05] tracking-tight text-slate-100 sm:text-6xl lg:text-7xl"
       >
-        Darpan Chakraborty.
+        Building the{" "}
+        <span
+          className="bg-clip-text text-transparent"
+          style={{
+            backgroundImage: "linear-gradient(135deg, #22D3EE 0%, #A78BFA 100%)",
+          }}
+        >
+          modern
+        </span>{" "}
+        web.
       </motion.h1>
 
-      <motion.h2
+      <motion.p
         custom={2}
         initial="hidden"
         animate="visible"
-        variants={LINE_VARIANTS}
-        className="mt-2 font-heading text-3xl font-semibold leading-tight text-slate-400 sm:text-4xl lg:text-5xl"
+        variants={VARIANTS}
+        className="mt-6 max-w-lg text-base leading-relaxed text-slate-400 sm:text-lg"
       >
-        I build things for the web.
-      </motion.h2>
-
-      <motion.p
-        custom={3}
-        initial="hidden"
-        animate="visible"
-        variants={LINE_VARIANTS}
-        className="mt-6 max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg"
-      >
-        Web developer specializing in building modern, high-performance
-        applications with{" "}
-        <span className="text-slate-200">React, Next.js</span>, and{" "}
-        <span className="text-slate-200">headless CMS architecture</span>.
-        Currently at{" "}
+        Specializing in React, Next.js, and headless CMS architecture. Four
+        years building production-grade digital experiences at{" "}
         <a
           href="https://favfly.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-cyan-400 transition-colors duration-200 hover:text-cyan-500 cursor-pointer"
+          className="text-slate-200 underline-offset-2 hover:text-cyan-400 transition-colors duration-200 cursor-pointer"
         >
           Favfly
         </a>
@@ -75,38 +74,41 @@ export const Hero = () => (
       </motion.p>
 
       <motion.div
-        custom={4}
+        custom={3}
         initial="hidden"
         animate="visible"
-        variants={LINE_VARIANTS}
-        className="mt-10"
+        variants={VARIANTS}
+        className="mt-10 flex flex-wrap items-center gap-4"
       >
         <a
-          href="#work"
-          onClick={(e) => {
-            e.preventDefault();
-            document
-              .querySelector("#work")
-              ?.scrollIntoView({ behavior: "smooth" });
+          href="mailto:hello@dcoder.me"
+          className="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-mono text-sm font-medium text-void-950 transition-opacity duration-200 hover:opacity-90 cursor-pointer"
+          style={{
+            background: "linear-gradient(135deg, #22D3EE, #A78BFA)",
           }}
-          className="group inline-flex items-center gap-2 rounded border border-cyan-400 px-6 py-3 font-mono text-sm text-cyan-400 transition-all duration-200 hover:bg-cyan-400/10 cursor-pointer"
         >
-          View my work
+          Get in touch
+        </a>
+
+        <button
+          onClick={() => {
+            const el = document.getElementById("about");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+          }}
+          className="inline-flex items-center gap-2 rounded-lg border border-void-600 px-6 py-3 font-mono text-sm text-slate-400 transition-all duration-200 hover:border-slate-500 hover:text-slate-200 cursor-pointer"
+        >
+          Explore
           <svg
-            className="h-4 w-4 transition-transform duration-200 group-hover:translate-y-0.5"
+            className="h-3.5 w-3.5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth={2}
             aria-hidden="true"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
-        </a>
+        </button>
       </motion.div>
     </div>
   </section>
