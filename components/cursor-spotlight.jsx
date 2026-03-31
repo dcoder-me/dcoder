@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 /**
- * Brittany Chiang-inspired cursor-following radial gradient spotlight
+ * Cursor-following radial gradient spotlight with warm gold tint
  * @returns {JSX.Element}
  */
 export const CursorSpotlight = () => {
@@ -40,7 +40,7 @@ export const CursorSpotlight = () => {
       className="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300"
       style={{
         opacity: isVisible ? 1 : 0,
-        background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(34, 211, 238, 0.06), transparent 40%)`,
+        background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(200, 169, 96, 0.03), transparent 40%)`,
       }}
       aria-hidden="true"
     />

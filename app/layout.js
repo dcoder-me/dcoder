@@ -1,18 +1,18 @@
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Syne, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-syne",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const inter = Inter({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-outfit",
   display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "600"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -23,24 +23,26 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: "Darpan Chakraborty — Web Developer",
+  title: "Darpan Chakraborty — Full-Stack Web Developer",
   description:
-    "Web developer building modern, high-performance applications with React, Next.js, and headless CMS architecture.",
+    "Full-stack web developer building scalable applications with React, Next.js, and modern cloud architecture. Specializing in headless CMS, SaaS products, and AI-integrated solutions.",
   keywords: [
     "Darpan Chakraborty",
-    "web developer",
+    "full-stack developer",
     "React",
     "Next.js",
+    "SaaS",
+    "Prisma",
+    "PostgreSQL",
     "headless CMS",
-    "Prismic",
-    "Contentful",
+    "AI",
     "portfolio",
   ],
   authors: [{ name: "Darpan Chakraborty" }],
   openGraph: {
-    title: "Darpan Chakraborty — Web Developer",
+    title: "Darpan Chakraborty — Full-Stack Web Developer",
     description:
-      "Building modern, high-performance web applications with React, Next.js, and headless CMS architecture.",
+      "Building scalable web applications with React, Next.js, and modern cloud architecture.",
     url: "https://dcoder.me",
     siteName: "dcoder.me",
     locale: "en_US",
@@ -48,9 +50,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Darpan Chakraborty — Web Developer",
+    title: "Darpan Chakraborty — Full-Stack Web Developer",
     description:
-      "Building modern, high-performance web applications with React, Next.js, and headless CMS architecture.",
+      "Building scalable web applications with React, Next.js, and modern cloud architecture.",
     creator: "@dcoder_me",
   },
   metadataBase: new URL("https://dcoder.me"),
@@ -60,7 +62,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} font-body antialiased bg-navy-900 text-slate-200`}
+        className={`${syne.variable} ${outfit.variable} ${jetbrainsMono.variable} font-body antialiased bg-surface text-content`}
       >
         {children}
       </body>

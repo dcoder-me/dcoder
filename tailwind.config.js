@@ -8,32 +8,39 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        navy: {
-          900: "#0F172A",
-          800: "#1E293B",
-          700: "#334155",
-          600: "#475569",
+        surface: {
+          DEFAULT: "#050505",
+          elevated: "#0A0A0B",
+          card: "#0D0D0E",
         },
-        slate: {
-          200: "#E2E8F0",
-          300: "#CBD5E1",
-          400: "#94A3B8",
-          500: "#64748B",
+        content: {
+          DEFAULT: "#EDEDED",
+          secondary: "#A0A0A0",
+          muted: "#707070",
         },
-        cyan: {
-          400: "#22D3EE",
-          500: "#06B6D4",
-          600: "#0891B2",
-          900: "#164E63",
+        accent: {
+          DEFAULT: "#C8A960",
+          hover: "#D4B76E",
         },
       },
       fontFamily: {
-        heading: ["var(--font-space-grotesk)", "sans-serif"],
-        body: ["var(--font-inter)", "sans-serif"],
+        heading: ["var(--font-syne)", "sans-serif"],
+        body: ["var(--font-outfit)", "sans-serif"],
         mono: ["var(--font-jetbrains-mono)", "monospace"],
       },
       animation: {
-        "spotlight": "spotlight 1s ease forwards",
+        float: "float 8s ease-in-out infinite",
+        "float-slow": "float-slow 12s ease-in-out infinite",
+      },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translate(0px, 0px)" },
+          "50%": { transform: "translate(30px, -30px)" },
+        },
+        "float-slow": {
+          "0%, 100%": { transform: "translate(0px, 0px)" },
+          "50%": { transform: "translate(-20px, 20px)" },
+        },
       },
     },
   },

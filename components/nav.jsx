@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const NAV_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Work", href: "#work" },
+  { label: "Expertise", href: "#expertise" },
+  { label: "Stack", href: "#stack" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ];
@@ -50,7 +50,7 @@ export const Nav = () => {
       transition={{ duration: 0.5, delay: 0.2 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-navy-900/80 backdrop-blur-md border-b border-navy-700/50"
+          ? "bg-surface/80 backdrop-blur-md border-b border-white/[0.06]"
           : "bg-transparent"
       }`}
     >
@@ -61,9 +61,9 @@ export const Nav = () => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className="font-mono text-sm text-cyan-400 transition-colors duration-200 hover:text-cyan-500 cursor-pointer"
+          className="font-heading text-sm font-semibold text-content transition-colors duration-200 hover:text-accent cursor-pointer"
         >
-          dcoder.me
+          dc.
         </a>
 
         <ul className="hidden items-center gap-8 sm:flex">
@@ -74,15 +74,15 @@ export const Nav = () => {
                 onClick={(e) => handleClick(e, href)}
                 className={`relative font-mono text-xs uppercase tracking-widest transition-colors duration-200 cursor-pointer ${
                   activeSection === href
-                    ? "text-cyan-400"
-                    : "text-slate-400 hover:text-slate-200"
+                    ? "text-accent"
+                    : "text-content-muted hover:text-content"
                 }`}
               >
                 {label}
                 {activeSection === href && (
                   <motion.span
                     layoutId="nav-indicator"
-                    className="absolute -bottom-1 left-0 right-0 h-px bg-cyan-400"
+                    className="absolute -bottom-1 left-0 right-0 h-px bg-accent"
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
                 )}
@@ -91,13 +91,16 @@ export const Nav = () => {
           ))}
         </ul>
 
-        {/* Mobile nav */}
         <MobileNav activeSection={activeSection} onNavigate={handleClick} />
       </nav>
     </motion.header>
   );
 };
 
+/**
+ * @param {{ activeSection: string, onNavigate: Function }} props
+ * @returns {JSX.Element}
+ */
 const MobileNav = ({ activeSection, onNavigate }) => {
   const [open, setOpen] = useState(false);
 
@@ -110,12 +113,12 @@ const MobileNav = ({ activeSection, onNavigate }) => {
       >
         <div className="flex flex-col gap-1.5">
           <span
-            className={`block h-px w-6 bg-slate-200 transition-all duration-300 ${
+            className={`block h-px w-6 bg-content transition-all duration-300 ${
               open ? "translate-y-[3.5px] rotate-45" : ""
             }`}
           />
           <span
-            className={`block h-px w-6 bg-slate-200 transition-all duration-300 ${
+            className={`block h-px w-6 bg-content transition-all duration-300 ${
               open ? "-translate-y-[3.5px] -rotate-45" : ""
             }`}
           />
@@ -127,7 +130,7 @@ const MobileNav = ({ activeSection, onNavigate }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-40 flex items-center justify-center bg-navy-900/95 backdrop-blur-md"
+          className="fixed inset-0 z-40 flex items-center justify-center bg-surface/95 backdrop-blur-md"
         >
           <ul className="flex flex-col items-center gap-8">
             {NAV_LINKS.map(({ label, href }) => (
@@ -140,8 +143,8 @@ const MobileNav = ({ activeSection, onNavigate }) => {
                   }}
                   className={`font-mono text-sm uppercase tracking-widest transition-colors duration-200 cursor-pointer ${
                     activeSection === href
-                      ? "text-cyan-400"
-                      : "text-slate-400 hover:text-slate-200"
+                      ? "text-accent"
+                      : "text-content-muted hover:text-content"
                   }`}
                 >
                   {label}

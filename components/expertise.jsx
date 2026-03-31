@@ -1,0 +1,166 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { FadeIn, StaggerContainer, StaggerItem } from "./fade-in";
+
+const EXPERTISE = [
+  {
+    icon: "terminal",
+    title: "Full-Stack Web Applications",
+    description:
+      "Production-grade applications built with React and Next.js. From single-page apps to complex multi-page platforms — optimized for performance, SEO, and scalable architecture.",
+    tech: ["React", "Next.js", "Node.js", "Vercel"],
+  },
+  {
+    icon: "document",
+    title: "Headless CMS Architecture",
+    description:
+      "Content platforms that give teams full editorial control. I design content models and connect headless backends to modern frontends — so non-technical teams can publish independently.",
+    tech: ["Prismic", "Contentful", "ISR", "GraphQL"],
+  },
+  {
+    icon: "database",
+    title: "SaaS Product Engineering",
+    description:
+      "End-to-end SaaS development with robust data layers, authentication, and payment integration. Scalable architecture designed for growth from day one.",
+    tech: ["Prisma", "PostgreSQL", "Auth", "Stripe"],
+  },
+  {
+    icon: "sparkle",
+    title: "AI-Integrated Solutions",
+    description:
+      "Embedding AI capabilities into web applications — from intelligent search and content generation to automated workflows powered by large language models.",
+    tech: ["OpenAI API", "LangChain", "RAG", "Vector DB"],
+  },
+];
+
+const ICONS = {
+  terminal: (
+    <svg
+      className="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"
+      />
+    </svg>
+  ),
+  document: (
+    <svg
+      className="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
+      />
+    </svg>
+  ),
+  database: (
+    <svg
+      className="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"
+      />
+    </svg>
+  ),
+  sparkle: (
+    <svg
+      className="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"
+      />
+    </svg>
+  ),
+};
+
+/**
+ * @returns {JSX.Element}
+ */
+export const Expertise = () => (
+  <section id="expertise" className="relative px-6 py-32 lg:py-40">
+    <div className="mx-auto max-w-6xl">
+      <FadeIn>
+        <p className="font-mono text-xs tracking-[0.25em] text-accent uppercase sm:text-sm">
+          Expertise
+        </p>
+        <h2 className="mt-3 font-heading text-3xl font-bold text-content sm:text-4xl lg:text-5xl">
+          What I Build
+        </h2>
+      </FadeIn>
+
+      <StaggerContainer
+        className="mt-16 grid gap-4 sm:grid-cols-2"
+        staggerDelay={0.1}
+      >
+        {EXPERTISE.map((item) => (
+          <StaggerItem key={item.title}>
+            <ExpertiseCard {...item} />
+          </StaggerItem>
+        ))}
+      </StaggerContainer>
+    </div>
+  </section>
+);
+
+/**
+ * @param {{ icon: string, title: string, description: string, tech: string[] }} props
+ * @returns {JSX.Element}
+ */
+const ExpertiseCard = ({ icon, title, description, tech }) => (
+  <motion.article
+    whileHover={{ y: -3 }}
+    transition={{ duration: 0.25, ease: "easeOut" }}
+    className="group relative h-full rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:border-accent/20 hover:bg-white/[0.04] sm:p-8"
+  >
+    <div className="mb-5 inline-flex rounded-xl bg-accent/10 p-3 text-accent">
+      {ICONS[icon]}
+    </div>
+
+    <h3 className="font-heading text-lg font-semibold text-content transition-colors duration-200 group-hover:text-accent sm:text-xl">
+      {title}
+    </h3>
+
+    <p className="mt-3 text-sm leading-relaxed text-content-secondary">
+      {description}
+    </p>
+
+    <ul className="mt-5 flex flex-wrap gap-2">
+      {tech.map((t) => (
+        <li
+          key={t}
+          className="rounded-full border border-white/[0.06] bg-white/[0.03] px-3 py-1 font-mono text-xs text-content-muted"
+        >
+          {t}
+        </li>
+      ))}
+    </ul>
+  </motion.article>
+);

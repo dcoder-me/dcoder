@@ -3,13 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #0F172A;
-  --foreground: #E2E8F0;
-  --surface: #1E293B;
-  --border: #334155;
-  --text-muted: #94A3B8;
-  --accent: #22D3EE;
-  --accent-hover: #06B6D4;
+  --surface: #050505;
+  --surface-elevated: #0A0A0B;
+  --surface-card: #0D0D0E;
+  --content: #EDEDED;
+  --content-secondary: #A0A0A0;
+  --content-muted: #707070;
+  --accent: #C8A960;
+  --accent-hover: #D4B76E;
 }
 
 * {
@@ -24,34 +25,33 @@ html {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-inter), sans-serif;
+  color: var(--content);
+  background: var(--surface);
+  font-family: var(--font-outfit), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: rgba(34, 211, 238, 0.2);
-  color: #E2E8F0;
+  background: rgba(200, 169, 96, 0.2);
+  color: #EDEDED;
 }
 
-/* scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0F172A;
+  background: #050505;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #1a1a1a;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #2a2a2a;
 }
 
 @media (prefers-reduced-motion: reduce) {

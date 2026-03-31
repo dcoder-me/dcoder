@@ -1,8 +1,8 @@
 import { Nav } from "@/components/nav";
 import { CursorSpotlight } from "@/components/cursor-spotlight";
 import { Hero } from "@/components/hero";
-import { About } from "@/components/about";
-import { Projects } from "@/components/projects";
+import { Expertise } from "@/components/expertise";
+import { TechStack } from "@/components/tech-stack";
 import { Experience } from "@/components/experience";
 import { Contact, Footer } from "@/components/contact";
 
@@ -13,8 +13,8 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <About />
-        <Projects />
+        <Expertise />
+        <TechStack />
         <Experience />
         <Contact />
       </main>
