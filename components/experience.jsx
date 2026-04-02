@@ -4,23 +4,24 @@ import { FadeIn, StaggerContainer, StaggerItem } from "./fade-in";
 
 const EXPERIENCE = [
   {
-    role: "Web Developer",
+    role: "Full-Stack Developer",
     company: "Favfly",
     url: "https://favfly.com",
     period: "2022 — Present",
     description: [
-      "Build and maintain production websites for business clients using React, Next.js, and headless CMS platforms (Prismic, Contentful).",
-      "Architect content models and frontend integrations that empower non-technical clients to manage their own content independently.",
-      "Implement performance-optimized builds with ISR, image optimization, and Vercel deployment pipelines achieving consistent Lighthouse scores above 90.",
-      "Collaborate with design and marketing teams to translate wireframes and business requirements into responsive, accessible web experiences.",
+      "Architect and ship production web and mobile applications end-to-end — from UI to API to deployment — for business clients across multiple industries.",
+      "Integrate AI capabilities (OpenAI, Claude API) into client products, including embedded chat assistants and LLM-powered workflow features.",
+      "Build and maintain headless CMS architectures (Prismic, Contentful) that give non-technical clients full editorial control without developer involvement.",
+      "Consistently deliver Lighthouse scores of 95–100 through ISR, image optimization, and performance-first engineering practices.",
+      "Design and automate business workflows using n8n, Zapier, and Make — connecting CRMs, webhooks, and internal tools to reduce manual overhead.",
     ],
     tech: [
-      "React",
-      "Next.js",
-      "Prismic",
-      "Contentful",
-      "Tailwind CSS",
-      "Vercel",
+      "React / Next.js",
+      "Mobile Development",
+      "AI Integration",
+      "Headless CMS",
+      "Workflow Automation",
+      "Web Performance",
     ],
   },
 ];

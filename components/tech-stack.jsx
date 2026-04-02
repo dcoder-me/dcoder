@@ -2,22 +2,37 @@
 
 import { FadeIn, StaggerContainer, StaggerItem } from "./fade-in";
 
-// Tools used daily — shown prominently
+// Disciplines — each is a genuine area of depth
 const PRIMARY_STACK = [
-  { name: "React", context: "Component architecture & UI" },
-  { name: "Next.js", context: "App Router · SSR · ISR · Edge" },
-  { name: "JavaScript", context: "ES2022+ · primary language" },
-  { name: "Tailwind CSS", context: "Utility-first design system" },
-  { name: "Prismic & Contentful", context: "Headless CMS & content modeling" },
-  { name: "Vercel", context: "Deploy · previews · edge functions" },
+  {
+    name: "React & Next.js",
+    context: "Full-stack web apps · Performance · Saas tools",
+  },
+  {
+    name: "Mobile Development",
+    context: "React Native · PWA · Cross-Platform apps",
+  },
+  {
+    name: "AI Integration",
+    context: "OpenAI · Claude API · LLM-powered product features",
+  },
+  {
+    name: "Backend & APIs",
+    context: "Node.js · REST · GraphQL · PostgreSQL · MongoDB",
+  },
+  {
+    name: "Workflow Automation",
+    context: "n8n · Zapier · Make · HubSpot · webhook pipelines",
+  },
+  { name: "Content Systems", context: "Headless CMS · Prismic · Contentful" },
 ];
 
-// Capability areas — intentionally broad, not tool-specific
+// Supporting capabilities — intentionally broad
 const CAPABILITIES = [
-  "Backend & API development",
-  "Relational & document databases",
   "Animation & interaction design",
-  "Containerization & version control",
+  "Web performance & Core Web Vitals",
+  "Database design & data modeling",
+  "Containerization & deployment pipelines",
 ];
 
 /**
@@ -37,14 +52,14 @@ export const TechStack = () => (
     <div className="mx-auto max-w-6xl">
       <FadeIn>
         <p className="font-mono text-xs tracking-[0.25em] text-accent uppercase sm:text-sm">
-          Technologies
+          Capabilities
         </p>
         <h2 className="mt-3 font-heading text-3xl font-bold text-content sm:text-4xl">
-          Tech Stack
+          What I Build
         </h2>
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-content-muted">
-          Tools I reach for on every project — chosen for reliability,
-          performance, and developer experience.
+          Full-stack across web, mobile, and AI — from product interface to
+          backend logic to automated workflows.
         </p>
       </FadeIn>
 

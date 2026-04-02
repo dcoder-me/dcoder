@@ -115,7 +115,7 @@ export const Footer = () => (
       </div>
 
       <p className="font-mono text-xs text-content-muted">
-        Designed & Built by Darpan Chakraborty
+        Copyright © {new Date().getFullYear()} DCoder
       </p>
     </div>
   </footer>
