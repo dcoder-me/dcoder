@@ -66,52 +66,66 @@ export const Experience = () => (
  * @returns {JSX.Element}
  */
 const ExperienceItem = ({ role, company, url, period, description, tech }) => (
-  <div className="group grid gap-6 sm:grid-cols-[160px_1fr]">
-    <p className="pt-1 font-mono text-xs tracking-wide text-content-muted">
-      {period}
-    </p>
+  <div className="group relative rounded-2xl border border-white/[0.09] bg-white/[0.04] backdrop-blur-md p-8 transition-all duration-300 hover:border-white/[0.14] hover:bg-white/[0.06]">
+    {/* Left timeline accent */}
+    <div
+      className="absolute left-0 top-8 bottom-8 w-px rounded-full"
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(200,169,96,0.55) 0%, rgba(200,169,96,0.12) 60%, transparent 100%)",
+      }}
+      aria-hidden="true"
+    />
 
-    <div>
-      <h3 className="font-heading text-lg font-semibold text-content">
-        {role}{" "}
-        <span className="text-accent">
-          @{" "}
+    <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between mb-6">
+      <div>
+        <h3 className="font-heading text-xl font-bold text-content">
+          {role}
+        </h3>
+        <div className="mt-1.5 flex items-center gap-2">
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors duration-200 hover:text-accent-hover cursor-pointer"
+            className="font-mono text-sm text-accent transition-colors duration-200 hover:text-accent-hover cursor-pointer"
           >
             {company}
           </a>
-        </span>
-      </h3>
+          <span className="text-content-muted/50 text-xs" aria-hidden="true">·</span>
+          <span className="font-mono text-xs text-content-muted">{period}</span>
+        </div>
+      </div>
 
-      <ul className="mt-4 space-y-3">
-        {description.map((item, i) => (
-          <li
-            key={i}
-            className="flex gap-3 text-sm leading-relaxed text-content-secondary"
-          >
-            <span
-              className="mt-2 block h-1 w-1 flex-shrink-0 rounded-full bg-accent/50"
-              aria-hidden="true"
-            />
-            {item}
-          </li>
-        ))}
-      </ul>
-
-      <ul className="mt-5 flex flex-wrap gap-2">
-        {tech.map((t) => (
-          <li
-            key={t}
-            className="rounded-full border border-white/[0.06] bg-white/[0.03] px-3 py-1 font-mono text-xs text-content-muted"
-          >
-            {t}
-          </li>
-        ))}
-      </ul>
+      <span className="inline-flex shrink-0 w-fit items-center gap-1.5 rounded-full border border-accent/25 bg-accent/[0.08] px-3 py-1 font-mono text-[10px] tracking-wide text-accent uppercase">
+        <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" aria-hidden="true" />
+        Current
+      </span>
     </div>
+
+    <ul className="space-y-3 mb-6">
+      {description.map((item, i) => (
+        <li
+          key={i}
+          className="flex gap-3 text-sm leading-relaxed text-content-secondary"
+        >
+          <span
+            className="mt-2 block h-1 w-1 flex-shrink-0 rounded-full bg-accent/50"
+            aria-hidden="true"
+          />
+          {item}
+        </li>
+      ))}
+    </ul>
+
+    <ul className="flex flex-wrap gap-2">
+      {tech.map((t) => (
+        <li
+          key={t}
+          className="rounded-full border border-white/[0.09] bg-white/[0.04] px-3 py-1 font-mono text-xs text-content-muted transition-all duration-200 hover:text-content hover:border-accent/20 hover:bg-accent/[0.04]"
+        >
+          {t}
+        </li>
+      ))}
+    </ul>
   </div>
 );

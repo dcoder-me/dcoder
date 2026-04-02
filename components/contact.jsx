@@ -26,24 +26,37 @@ export const Contact = () => (
 
       <FadeIn delay={0.1}>
         <h2 className="mt-4 font-heading text-4xl font-bold text-content sm:text-5xl lg:text-6xl">
-          Let&apos;s Work Together
+          Say Hello
         </h2>
       </FadeIn>
 
       <FadeIn delay={0.2}>
         <p className="mt-6 text-base leading-relaxed text-content-secondary">
-          Open to discussing new projects, collaborations, or full-time
-          opportunities. If you have an idea or just want to connect — my inbox
-          is always open.
+          Got a project to build, a product to ship, or just want to talk about
+          the web? Either way — the inbox is open.
         </p>
       </FadeIn>
 
       <FadeIn delay={0.3}>
         <a
           href="mailto:hello@dcoder.me"
-          className="mt-10 inline-flex items-center gap-2 rounded-full border border-accent/30 px-10 py-4 font-mono text-sm text-accent transition-all duration-300 hover:border-accent/60 hover:bg-accent/5 cursor-pointer"
+          className="group mt-10 inline-flex items-center gap-3 rounded-full border border-accent/30 px-10 py-4 font-mono text-sm text-accent transition-all duration-300 hover:border-accent/60 hover:bg-accent/[0.07] cursor-pointer"
         >
-          Get in touch
+          <svg
+            className="h-4 w-4 transition-transform duration-300 group-hover:scale-110"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={1.75}
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            />
+          </svg>
+          Write to me
         </a>
       </FadeIn>
     </div>

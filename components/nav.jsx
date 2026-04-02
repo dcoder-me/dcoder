@@ -18,23 +18,35 @@ export const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-
-      const sections = NAV_LINKS.map((link) =>
-        document.querySelector(link.href)
-      ).filter(Boolean);
-
-      const current = sections.find((section) => {
-        const rect = section.getBoundingClientRect();
-        return rect.top <= 120 && rect.bottom > 120;
-      });
-
-      if (current) setActiveSection(`#${current.id}`);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const sectionIds = NAV_LINKS.map((link) => link.href.slice(1));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      {
+        // Fires when section crosses ~25% from the top of the viewport
+        rootMargin: "-20% 0px -70% 0px",
+        threshold: 0,
+      }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const handleClick = (e, href) => {
@@ -48,9 +60,9 @@ export const Nav = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-surface/80 backdrop-blur-md border-b border-white/[0.06]"
+          ? "bg-black/70 backdrop-blur-2xl border-b border-white/[0.10] shadow-[0_2px_40px_rgba(0,0,0,0.55),0_1px_0_rgba(255,255,255,0.05)]"
           : "bg-transparent"
       }`}
     >
@@ -61,9 +73,11 @@ export const Nav = () => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className="font-heading text-sm font-semibold text-content transition-colors duration-200 hover:text-accent cursor-pointer"
+          className="font-mono text-sm font-semibold text-content transition-colors duration-200 hover:text-accent cursor-pointer"
         >
-          dc.
+          <span className="text-accent/70">&lt;</span>
+          DCoder
+          <span className="text-accent/70"> /&gt;</span>
         </a>
 
         <ul className="hidden items-center gap-8 sm:flex">
