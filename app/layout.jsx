@@ -1,4 +1,7 @@
 import { Syne, Outfit, JetBrains_Mono } from "next/font/google";
+import { Nav } from "@/components/nav";
+import { CursorSpotlight } from "@/components/cursor-spotlight";
+import { Footer } from "@/components/contact";
 import "./globals.css";
 
 const syne = Syne({
@@ -64,7 +67,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${syne.variable} ${outfit.variable} ${jetbrainsMono.variable} font-body antialiased bg-surface text-content`}
       >
-        {children}
+        <CursorSpotlight />
+        <Nav />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
