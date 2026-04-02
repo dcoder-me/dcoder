@@ -38,7 +38,7 @@ export const Nav = () => {
       {
         rootMargin: "-20% 0px -70% 0px",
         threshold: 0,
-      }
+      },
     );
 
     sectionIds.forEach((id) => {
@@ -64,7 +64,7 @@ export const Nav = () => {
     <>
       {/* Header — fixed, always on top */}
       <motion.header
-        initial={{ y: -20, opacity: 0 }}
+        initial={{ y: 0, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -106,7 +106,11 @@ export const Nav = () => {
                     <motion.span
                       layoutId="nav-indicator"
                       className="absolute -bottom-1 left-0 right-0 h-px bg-accent"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
                     />
                   )}
                 </a>
@@ -143,10 +147,16 @@ export const Nav = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-[100] flex items-center justify-center sm:hidden"
-          style={{ background: "rgba(5,5,5,0.97)", backdropFilter: "blur(20px)" }}
+          style={{
+            background: "rgba(5,5,5,0.97)",
+            backdropFilter: "blur(20px)",
+          }}
           onClick={() => setMobileOpen(false)}
         >
-          <ul className="flex flex-col items-center gap-8" onClick={(e) => e.stopPropagation()}>
+          <ul
+            className="flex flex-col items-center gap-8"
+            onClick={(e) => e.stopPropagation()}
+          >
             {NAV_LINKS.map(({ label, href }) => (
               <li key={href}>
                 <a
