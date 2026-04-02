@@ -26,7 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: "Darpan Chakraborty — Full-Stack Web Developer",
+  title: "DCoder",
   description:
     "Full-stack web developer building scalable applications with React, Next.js, and modern cloud architecture. Specializing in headless CMS, SaaS products, and AI-integrated solutions.",
   keywords: [
