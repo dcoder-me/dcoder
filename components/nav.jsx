@@ -41,12 +41,26 @@ export const Nav = () => {
       },
     );
 
+    // Clear active when hero is in view
+    const heroObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setActiveSection("");
+      },
+      { threshold: 0.2 },
+    );
+
     sectionIds.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
 
-    return () => observer.disconnect();
+    const hero = document.querySelector("section:first-of-type");
+    if (hero) heroObserver.observe(hero);
+
+    return () => {
+      observer.disconnect();
+      heroObserver.disconnect();
+    };
   }, []);
 
   const handleClick = (e, href) => {
@@ -69,7 +83,7 @@ export const Nav = () => {
         transition={{ duration: 0.5, delay: 0.2 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-white/[0.04] backdrop-blur-2xl border-b border-white/[0.07] shadow-[0_8px_32px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.06)]"
+            ? "bg-white/[0.04] backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
             : "bg-transparent"
         }`}
       >
@@ -81,7 +95,7 @@ export const Nav = () => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="font-mono text-sm font-semibold text-content transition-colors duration-200 hover:text-accent cursor-pointer"
+            className="font-mono text-sm font-semibold text-content transition-colors duration-200 cursor-pointer"
           >
             <span className="text-accent/70">&lt;</span>
             DCoder
