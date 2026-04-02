@@ -85,7 +85,7 @@ export const Footer = () => (
           }
         />
         <SocialLink
-          href="https://linkedin.com/in/darpan-chakraborty"
+          href="https://linkedin.com/in/darpanchakraborty"
           label="LinkedIn"
           icon={
             <svg

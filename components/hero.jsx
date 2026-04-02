@@ -31,7 +31,7 @@ const SOCIAL_LINKS = [
     ),
   },
   {
-    href: "https://linkedin.com/in/darpan-chakraborty",
+    href: "https://linkedin.com/in/darpanchakraborty",
     label: "LinkedIn",
     icon: (
       <svg
@@ -170,8 +170,8 @@ export const Hero = () => (
           className="text-accent transition-colors duration-200 hover:text-accent-hover cursor-pointer"
         >
           Favfly
-        </a>
-        {" "}· Kolkata, India
+        </a>{" "}
+        · Kolkata, India
       </motion.p>
 
       <motion.div
@@ -231,7 +231,11 @@ export const Hero = () => (
             className="pointer-events-auto group relative flex items-center text-content-muted/50 transition-colors duration-300 hover:text-accent cursor-pointer"
             initial={{ opacity: 0, x: -16 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.55 + index * 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            transition={{
+              delay: 0.55 + index * 0.15,
+              duration: 0.7,
+              ease: [0.16, 1, 0.3, 1],
+            }}
           >
             {/* Glow bg on hover */}
             <motion.span
@@ -246,7 +250,11 @@ export const Hero = () => (
             <motion.div
               className="relative z-10"
               animate={{ y: [0, -3, 0] }}
-              transition={{ duration: 2.8 + index * 0.4, repeat: Infinity, ease: "easeInOut" }}
+              transition={{
+                duration: 2.8 + index * 0.4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             >
               {link.icon}
             </motion.div>
