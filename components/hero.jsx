@@ -232,7 +232,6 @@ export const Hero = () => (
             initial={{ opacity: 0, x: -16 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.55 + index * 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ x: 4 }}
           >
             {/* Glow bg on hover */}
             <motion.span
@@ -248,8 +247,6 @@ export const Hero = () => (
               className="relative z-10"
               animate={{ y: [0, -3, 0] }}
               transition={{ duration: 2.8 + index * 0.4, repeat: Infinity, ease: "easeInOut" }}
-              whileHover={{ scale: 1.25, y: 0 }}
-              whileTap={{ scale: 0.9 }}
             >
               {link.icon}
             </motion.div>
@@ -298,8 +295,6 @@ export const Hero = () => (
               duration: 0.6,
               ease: [0.16, 1, 0.3, 1],
             }}
-            whileHover={{ scale: 1.15 }}
-            whileTap={{ scale: 0.95 }}
             className="text-content-muted transition-colors duration-200 hover:text-accent cursor-pointer"
           >
             {link.icon}
