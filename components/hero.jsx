@@ -64,7 +64,7 @@ const SOCIAL_LINKS = [
  * @returns {JSX.Element}
  */
 export const Hero = () => (
-  <section className="relative flex min-h-dvh items-center justify-center overflow-hidden px-6">
+  <section className="relative flex min-h-svh items-center justify-center overflow-hidden px-6">
     {/* Wozena-inspired light beam — conic gradient from top center */}
     <div
       className="pointer-events-none absolute inset-0"
