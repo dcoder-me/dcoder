@@ -14,6 +14,8 @@ export const SmoothScroll = () => {
       duration: 1.8,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      smoothTouch: true,
+      lerp: 0.1,
     });
 
     const raf = (time) => {
