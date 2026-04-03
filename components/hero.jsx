@@ -150,9 +150,9 @@ export const Hero = () => (
         variants={LINE_VARIANTS}
         className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-content-secondary sm:text-lg"
       >
-        I architect and ship production web applications — from headless content
-        platforms to SaaS products and AI-powered tools — with modern JavaScript
-        and cloud-native infrastructure.
+        I architect and ship production web applications, headless content
+        platforms, SaaS products, and AI-powered tools, built with modern
+        JavaScript and cloud-native infrastructure.
       </motion.p>
 
       <motion.p

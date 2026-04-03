@@ -7,13 +7,13 @@ const EXPERIENCE = [
     role: "Full-Stack Developer",
     company: "Favfly",
     url: "https://favfly.com",
-    period: "2022 — Present",
+    period: "2022 - Present",
     description: [
-      "Architect and ship production web and mobile applications end-to-end — from UI to API to deployment — for business clients across multiple industries.",
+      "Architect and ship production web and mobile applications end-to-end, from UI to API to deployment, for business clients across multiple industries.",
       "Integrate AI capabilities (OpenAI, Claude API) into client products, including embedded chat assistants and LLM-powered workflow features.",
       "Build and maintain headless CMS architectures (Prismic, Contentful) that give non-technical clients full editorial control without developer involvement.",
       "Consistently deliver Lighthouse scores of 95–100 through ISR, image optimization, and performance-first engineering practices.",
-      "Design and automate business workflows using n8n, Zapier, and Make — connecting CRMs, webhooks, and internal tools to reduce manual overhead.",
+      "Design and automate business workflows using n8n, Zapier, and Make, connecting CRMs, webhooks, and internal tools to reduce manual overhead.",
     ],
     tech: [
       "React / Next.js",

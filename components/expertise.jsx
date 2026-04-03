@@ -8,14 +8,14 @@ const EXPERTISE = [
     icon: "terminal",
     title: "Full-Stack Web Applications",
     description:
-      "Production-grade applications built with React and Next.js. From single-page apps to complex multi-page platforms — optimized for performance, SEO, and scalable architecture.",
+      "Production-grade applications built with React and Next.js. From single-page apps to complex multi-page platforms, optimized for performance, SEO, and scalable architecture.",
     tech: ["React", "Next.js", "Node.js", "Vercel"],
   },
   {
     icon: "document",
     title: "Headless CMS Architecture",
     description:
-      "Content platforms that give teams full editorial control. I design content models and connect headless backends to modern frontends — so non-technical teams can publish independently.",
+      "Content platforms that give teams full editorial control. I design content models and connect headless backends to modern frontend so non-technical teams can publish independently.",
     tech: ["Prismic", "Contentful", "ISR", "GraphQL"],
   },
   {
@@ -29,7 +29,7 @@ const EXPERTISE = [
     icon: "sparkle",
     title: "AI-Integrated Solutions",
     description:
-      "Embedding AI capabilities into web applications — from intelligent search and content generation to automated workflows powered by large language models.",
+      "Embedding AI capabilities into web applications, intelligent search, content generation, and automated workflows powered by large language models.",
     tech: ["OpenAI API", "LangChain", "RAG", "Vector DB"],
   },
 ];

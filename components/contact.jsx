@@ -33,7 +33,7 @@ export const Contact = () => (
       <FadeIn delay={0.2}>
         <p className="mt-6 text-base leading-relaxed text-content-secondary">
           Got a project to build, a product to ship, or just want to talk about
-          the web? Either way — the inbox is open.
+          the web? The inbox is open.
         </p>
       </FadeIn>
 

@@ -58,7 +58,7 @@ export const TechStack = () => (
           What I Build
         </h2>
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-content-muted">
-          Full-stack across web, mobile, and AI — from product interface to
+          Full-stack across web, mobile, and AI, from product interface to
           backend logic to automated workflows.
         </p>
       </FadeIn>
