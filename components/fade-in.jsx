@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 const EASE = [0.32, 0.72, 0, 1];
 
@@ -9,7 +9,7 @@ const EASE = [0.32, 0.72, 0, 1];
  * @returns {JSX.Element}
  */
 export const FadeIn = ({ children, delay = 0, className = "", y = 24 }) => (
-  <motion.div
+  <m.div
     initial={{ opacity: 0, y, filter: "blur(6px)" }}
     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
     viewport={{ once: true, margin: "-80px" }}
@@ -17,7 +17,7 @@ export const FadeIn = ({ children, delay = 0, className = "", y = 24 }) => (
     className={className}
   >
     {children}
-  </motion.div>
+  </m.div>
 );
 
 /**
@@ -29,7 +29,7 @@ export const StaggerContainer = ({
   staggerDelay = 0.08,
   className = "",
 }) => (
-  <motion.div
+  <m.div
     initial="hidden"
     whileInView="visible"
     viewport={{ once: true, margin: "-80px" }}
@@ -40,7 +40,7 @@ export const StaggerContainer = ({
     className={className}
   >
     {children}
-  </motion.div>
+  </m.div>
 );
 
 /**
@@ -48,7 +48,7 @@ export const StaggerContainer = ({
  * @returns {JSX.Element}
  */
 export const StaggerItem = ({ children, className = "" }) => (
-  <motion.div
+  <m.div
     variants={{
       hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
       visible: {
@@ -61,5 +61,5 @@ export const StaggerItem = ({ children, className = "" }) => (
     className={className}
   >
     {children}
-  </motion.div>
+  </m.div>
 );

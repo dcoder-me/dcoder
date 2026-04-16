@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 const NAV_LINKS = [
   { label: "Expertise", href: "#expertise" },
@@ -64,7 +64,7 @@ export const Nav = () => {
     <>
       {/* Floating pill nav — detached from top */}
       <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-        <motion.nav
+        <m.nav
           initial={{ y: -20, opacity: 0, filter: "blur(8px)" }}
           animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
           transition={{ duration: 0.9, ease: EASE }}
@@ -100,7 +100,7 @@ export const Nav = () => {
                 >
                   {label}
                   {activeSection === href && (
-                    <motion.span
+                    <m.span
                       layoutId="nav-indicator"
                       className="absolute -bottom-1 left-0 right-0 h-px bg-accent/60"
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -138,13 +138,13 @@ export const Nav = () => {
               />
             </div>
           </button>
-        </motion.nav>
+        </m.nav>
       </div>
 
       {/* Mobile full-screen overlay */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -172,7 +172,7 @@ export const Nav = () => {
               onClick={(e) => e.stopPropagation()}
             >
               {NAV_LINKS.map(({ label, href }, i) => (
-                <motion.li
+                <m.li
                   key={href}
                   initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -190,20 +190,20 @@ export const Nav = () => {
                   >
                     {label}
                   </a>
-                </motion.li>
+                </m.li>
               ))}
             </ul>
 
             {/* Bottom eyebrow */}
-            <motion.p
+            <m.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
               className="absolute bottom-12 font-mono text-[10px] tracking-[0.25em] uppercase text-content-muted/40"
             >
               dcoder.me
-            </motion.p>
-          </motion.div>
+            </m.p>
+          </m.div>
         )}
       </AnimatePresence>
     </>

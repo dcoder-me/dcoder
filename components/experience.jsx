@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { FadeIn, StaggerContainer, StaggerItem } from "./fade-in";
 
 const EXPERIENCE = [
@@ -31,7 +31,7 @@ const EXPERIENCE = [
  * @returns {JSX.Element}
  */
 export const Experience = () => (
-  <section id="experience" className="relative px-6 py-24 lg:py-32">
+  <section id="experience" className="relative px-6 py-24 lg:py-32 cv-auto">
     <div
       className="pointer-events-none absolute top-0 left-1/2 h-px w-2/3 -translate-x-1/2"
       style={{ background: "linear-gradient(90deg, transparent, rgba(200,169,96,0.15), transparent)" }}
@@ -64,7 +64,7 @@ export const Experience = () => (
  * @returns {JSX.Element}
  */
 const ExperienceItem = ({ role, company, url, period, description, tech }) => (
-  <motion.div
+  <m.div
     whileHover={{ y: -2 }}
     transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
     className="group cursor-default"
@@ -125,5 +125,5 @@ const ExperienceItem = ({ role, company, url, period, description, tech }) => (
         </ul>
       </div>
     </div>
-  </motion.div>
+  </m.div>
 );

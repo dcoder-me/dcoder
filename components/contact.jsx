@@ -6,7 +6,7 @@ import { FadeIn } from "./fade-in";
  * @returns {JSX.Element}
  */
 export const Contact = () => (
-  <section id="contact" className="relative px-6 py-32 lg:py-40">
+  <section id="contact" className="relative px-6 py-32 lg:py-40 cv-auto">
     <div
       className="pointer-events-none absolute top-0 left-1/2 h-px w-2/3 -translate-x-1/2"
       style={{ background: "linear-gradient(90deg, transparent, rgba(200,169,96,0.15), transparent)" }}

@@ -1,31 +1,55 @@
 "use client";
 
 import { useEffect } from "react";
-import Lenis from "lenis";
 
 /**
- * Initializes Lenis smooth scrolling globally.
- * Drop this anywhere in the tree — it has no rendered output.
+ * Initializes Lenis smooth scrolling globally, but defers the Lenis
+ * import + RAF loop until after the browser is idle — keeps it off
+ * the LCP critical path on mobile.
  * @returns {null}
  */
 export const SmoothScroll = () => {
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.8,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      smoothTouch: true,
-      lerp: 0.1,
+    let lenis;
+    let rafId;
+    let idleHandle;
+    let cancelled = false;
+
+    const schedule =
+      typeof window.requestIdleCallback === "function"
+        ? window.requestIdleCallback
+        : (cb) => setTimeout(cb, 1);
+    const cancel =
+      typeof window.cancelIdleCallback === "function"
+        ? window.cancelIdleCallback
+        : clearTimeout;
+
+    idleHandle = schedule(async () => {
+      const { default: Lenis } = await import("lenis");
+      if (cancelled) return;
+
+      lenis = new Lenis({
+        duration: 1.8,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        smoothTouch: true,
+        lerp: 0.1,
+      });
+
+      const raf = (time) => {
+        lenis.raf(time);
+        rafId = requestAnimationFrame(raf);
+      };
+
+      rafId = requestAnimationFrame(raf);
     });
 
-    const raf = (time) => {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
+    return () => {
+      cancelled = true;
+      if (idleHandle != null) cancel(idleHandle);
+      if (rafId != null) cancelAnimationFrame(rafId);
+      lenis?.destroy();
     };
-
-    requestAnimationFrame(raf);
-
-    return () => lenis.destroy();
   }, []);
 
   return null;

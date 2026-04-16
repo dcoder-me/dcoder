@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 const EASE = [0.32, 0.72, 0, 1];
 
@@ -105,7 +105,7 @@ export const Hero = () => (
 
     <div className="relative mx-auto w-full max-w-5xl text-center">
       {/* Eyebrow badge */}
-      <motion.div
+      <m.div
         custom={0}
         initial="hidden"
         animate="visible"
@@ -116,9 +116,9 @@ export const Hero = () => (
           <span className="h-1.5 w-1.5 rounded-full bg-accent/70 animate-pulse" aria-hidden="true" />
           Full-Stack Developer
         </span>
-      </motion.div>
+      </m.div>
 
-      <motion.h1
+      <m.h1
         custom={1}
         initial="hidden"
         animate="visible"
@@ -128,9 +128,9 @@ export const Hero = () => (
         Darpan
         <br />
         Chakraborty
-      </motion.h1>
+      </m.h1>
 
-      <motion.p
+      <m.p
         custom={2}
         initial="hidden"
         animate="visible"
@@ -140,9 +140,9 @@ export const Hero = () => (
         I architect and ship production web applications, headless content
         platforms, SaaS products, and AI-powered tools — built with modern
         JavaScript and cloud-native infrastructure.
-      </motion.p>
+      </m.p>
 
-      <motion.p
+      <m.p
         custom={3}
         initial="hidden"
         animate="visible"
@@ -159,10 +159,10 @@ export const Hero = () => (
           Favfly
         </a>{" "}
         · Kolkata, India
-      </motion.p>
+      </m.p>
 
       {/* CTA — Button-in-Button architecture */}
-      <motion.div
+      <m.div
         custom={4}
         initial="hidden"
         animate="visible"
@@ -190,11 +190,11 @@ export const Hero = () => (
             </svg>
           </span>
         </a>
-      </motion.div>
+      </m.div>
 
       {/* Desktop Left Sidebar Social Links */}
       <div className="pointer-events-none absolute left-10 top-1/2 hidden -translate-y-1/2 lg:flex lg:flex-col lg:items-center lg:gap-7">
-        <motion.div
+        <m.div
           className="w-px h-16 bg-gradient-to-b from-transparent to-accent/25"
           initial={{ scaleY: 0, opacity: 0 }}
           animate={{ scaleY: 1, opacity: 1 }}
@@ -204,7 +204,7 @@ export const Hero = () => (
         />
 
         {SOCIAL_LINKS.map((link, index) => (
-          <motion.a
+          <m.a
             key={`left-${link.href}`}
             href={link.href}
             target="_blank"
@@ -215,32 +215,32 @@ export const Hero = () => (
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.55 + index * 0.15, duration: 0.7, ease: EASE }}
           >
-            <motion.span
+            <m.span
               className="absolute inset-0 -m-2 rounded-full bg-accent/10 blur-md"
               initial={{ opacity: 0 }}
               whileHover={{ opacity: 1 }}
               transition={{ duration: 0.25 }}
               aria-hidden="true"
             />
-            <motion.div
+            <m.div
               className="relative z-10"
               animate={{ y: [0, -3, 0] }}
               transition={{ duration: 2.8 + index * 0.4, repeat: Infinity, ease: "easeInOut" }}
             >
               {link.icon}
-            </motion.div>
-            <motion.span
+            </m.div>
+            <m.span
               className="absolute left-full ml-4 whitespace-nowrap font-mono text-[10px] tracking-wider text-accent uppercase overflow-hidden"
               initial={{ opacity: 0, x: -6 }}
               whileHover={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.2 }}
             >
               {link.label}
-            </motion.span>
-          </motion.a>
+            </m.span>
+          </m.a>
         ))}
 
-        <motion.div
+        <m.div
           className="w-px h-16 bg-gradient-to-b from-accent/25 to-transparent"
           initial={{ scaleY: 0, opacity: 0 }}
           animate={{ scaleY: 1, opacity: 1 }}
@@ -251,14 +251,14 @@ export const Hero = () => (
       </div>
 
       {/* Mobile Social Links */}
-      <motion.div
+      <m.div
         className="mt-8 flex justify-center gap-6 lg:hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.7, duration: 0.6 }}
       >
         {SOCIAL_LINKS.map((link, index) => (
-          <motion.a
+          <m.a
             key={`mobile-${link.href}`}
             href={link.href}
             target="_blank"
@@ -270,9 +270,9 @@ export const Hero = () => (
             className="text-content-muted transition-colors duration-200 hover:text-accent cursor-pointer"
           >
             {link.icon}
-          </motion.a>
+          </m.a>
         ))}
-      </motion.div>
+      </m.div>
     </div>
   </section>
 );

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { FadeIn, StaggerContainer, StaggerItem } from "./fade-in";
 
 const PRIMARY_STACK = [
@@ -23,7 +23,7 @@ const CAPABILITIES = [
  * @returns {JSX.Element}
  */
 export const TechStack = () => (
-  <section id="stack" className="relative px-6 py-24 lg:py-32">
+  <section id="stack" className="relative px-6 py-24 lg:py-32 cv-auto">
     <div
       className="pointer-events-none absolute top-0 left-1/2 h-px w-2/3 -translate-x-1/2"
       style={{ background: "linear-gradient(90deg, transparent, rgba(200,169,96,0.15), transparent)" }}
@@ -79,7 +79,7 @@ export const TechStack = () => (
  * @returns {JSX.Element}
  */
 const PrimaryCard = ({ name, context }) => (
-  <motion.div
+  <m.div
     whileHover={{ y: -3 }}
     transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
     className="group h-full cursor-default"
@@ -98,5 +98,5 @@ const PrimaryCard = ({ name, context }) => (
         <p className="mt-1 font-mono text-[11px] text-content-muted">{context}</p>
       </div>
     </div>
-  </motion.div>
+  </m.div>
 );

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { FadeIn, StaggerContainer, StaggerItem } from "./fade-in";
 
 const EXPERTISE = [
@@ -65,7 +65,7 @@ const ICONS = {
  * @returns {JSX.Element}
  */
 export const Expertise = () => (
-  <section id="expertise" className="relative px-6 py-32 lg:py-40">
+  <section id="expertise" className="relative px-6 py-32 lg:py-40 cv-auto">
     <div className="mx-auto max-w-6xl">
       <FadeIn>
         <span className="inline-flex items-center rounded-full border border-accent/20 bg-accent/[0.05] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
@@ -99,7 +99,7 @@ export const Expertise = () => (
  * @returns {JSX.Element}
  */
 const ExpertiseCard = ({ icon, title, description, tech }) => (
-  <motion.article
+  <m.article
     whileHover={{ y: -4 }}
     transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
     className="group h-full cursor-default"
@@ -134,5 +134,5 @@ const ExpertiseCard = ({ icon, title, description, tech }) => (
         </ul>
       </div>
     </div>
-  </motion.article>
+  </m.article>
 );

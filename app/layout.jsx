@@ -1,9 +1,20 @@
 import { Syne, Outfit, JetBrains_Mono } from "next/font/google";
+import dynamic from "next/dynamic";
 import { Nav } from "@/components/nav";
-import { CursorSpotlight } from "@/components/cursor-spotlight";
 import { Footer } from "@/components/contact";
-import { SmoothScroll } from "@/components/smooth-scroll";
+import { MotionProvider } from "@/components/motion-provider";
 import "./globals.css";
+
+const SmoothScroll = dynamic(
+  () => import("@/components/smooth-scroll").then((mod) => mod.SmoothScroll),
+  { ssr: false }
+);
+
+const CursorSpotlight = dynamic(
+  () =>
+    import("@/components/cursor-spotlight").then((mod) => mod.CursorSpotlight),
+  { ssr: false }
+);
 
 const syne = Syne({
   subsets: ["latin"],
@@ -70,11 +81,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${syne.variable} ${outfit.variable} ${jetbrainsMono.variable} font-body antialiased bg-surface text-content`}
       >
-        <SmoothScroll />
-        <CursorSpotlight />
-        <Nav />
-        <main>{children}</main>
-        <Footer />
+        <MotionProvider>
+          <SmoothScroll />
+          <CursorSpotlight />
+          <Nav />
+          <main>{children}</main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );
