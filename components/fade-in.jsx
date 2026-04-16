@@ -2,16 +2,18 @@
 
 import { motion } from "framer-motion";
 
+const EASE = [0.32, 0.72, 0, 1];
+
 /**
  * @param {{ children: React.ReactNode, delay?: number, className?: string, y?: number }} props
  * @returns {JSX.Element}
  */
 export const FadeIn = ({ children, delay = 0, className = "", y = 24 }) => (
   <motion.div
-    initial={{ opacity: 0, y }}
-    whileInView={{ opacity: 1, y: 0 }}
+    initial={{ opacity: 0, y, filter: "blur(6px)" }}
+    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
     viewport={{ once: true, margin: "-80px" }}
-    transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
+    transition={{ duration: 0.75, delay, ease: EASE }}
     className={className}
   >
     {children}
@@ -48,11 +50,12 @@ export const StaggerContainer = ({
 export const StaggerItem = ({ children, className = "" }) => (
   <motion.div
     variants={{
-      hidden: { opacity: 0, y: 20 },
+      hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
       visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+        filter: "blur(0px)",
+        transition: { duration: 0.75, ease: EASE },
       },
     }}
     className={className}
