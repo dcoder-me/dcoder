@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { registerLenis } from "@/lib/scroll-to";
 
 /**
  * Initializes Lenis smooth scrolling globally, but defers the Lenis
@@ -32,9 +33,10 @@ export const SmoothScroll = () => {
         duration: 1.8,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
-        smoothTouch: true,
+        smoothTouch: false,
         lerp: 0.1,
       });
+      registerLenis(lenis);
 
       const raf = (time) => {
         lenis.raf(time);
@@ -46,6 +48,7 @@ export const SmoothScroll = () => {
 
     return () => {
       cancelled = true;
+      registerLenis(null);
       if (idleHandle != null) cancel(idleHandle);
       if (rafId != null) cancelAnimationFrame(rafId);
       lenis?.destroy();

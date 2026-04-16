@@ -8,7 +8,7 @@
   --surface-card: #0D0D0E;
   --content: #EDEDED;
   --content-secondary: #A0A0A0;
-  --content-muted: #707070;
+  --content-muted: #909090;
   --accent: #C8A960;
   --accent-hover: #D4B76E;
 }
@@ -20,8 +20,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
-  /* Accounts for floating pill nav (top-6 ~24px + pill height ~48px + breathing room) */
+  /* scroll-behavior handled by Lenis — native smooth conflicts with it */
   scroll-padding-top: 100px;
 }
 
@@ -43,7 +42,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -76,6 +75,13 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 220px 220px;
   background-repeat: repeat;
+}
+
+/* Global keyboard focus ring — accent gold, matches design system */
+:focus-visible {
+  outline: 2px solid rgba(200, 169, 96, 0.65);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 @supports (content-visibility: auto) {

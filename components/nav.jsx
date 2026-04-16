@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
+import { scrollTo } from "@/lib/scroll-to";
 
 const NAV_LINKS = [
   { label: "Expertise", href: "#expertise" },
@@ -24,11 +25,14 @@ export const Nav = () => {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(`#${entry.target.id}`);
-        });
+        const intersecting = entries.filter((e) => e.isIntersecting);
+        if (!intersecting.length) return;
+        const best = intersecting.reduce((a, b) =>
+          a.intersectionRatio >= b.intersectionRatio ? a : b
+        );
+        setActiveSection(`#${best.target.id}`);
       },
-      { rootMargin: "-20% 0px -70% 0px", threshold: 0 }
+      { rootMargin: "-20% 0px -70% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
     );
 
     const heroObserver = new IntersectionObserver(
@@ -52,7 +56,7 @@ export const Nav = () => {
 
   const handleClick = (e, href) => {
     e.preventDefault();
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    scrollTo(href);
   };
 
   const handleMobileNav = (e, href) => {
@@ -75,7 +79,7 @@ export const Nav = () => {
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
+              scrollTo(0);
             }}
             className="font-mono text-sm font-semibold text-content transition-colors duration-300 cursor-pointer hover:text-accent/80"
           >

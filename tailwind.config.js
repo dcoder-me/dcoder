@@ -16,7 +16,7 @@ module.exports = {
         content: {
           DEFAULT: "#EDEDED",
           secondary: "#A0A0A0",
-          muted: "#707070",
+          muted: "#909090",
         },
         accent: {
           DEFAULT: "#C8A960",

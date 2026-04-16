@@ -1,22 +1,9 @@
 "use client";
 
-import { m } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
+import { scrollTo } from "@/lib/scroll-to";
 
 const EASE = [0.32, 0.72, 0, 1];
-
-const LINE_VARIANTS = {
-  hidden: { opacity: 0, y: 30, filter: "blur(12px)" },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      delay: 0.3 + i * 0.12,
-      duration: 0.9,
-      ease: EASE,
-    },
-  }),
-};
 
 const SOCIAL_LINKS = [
   {
@@ -51,7 +38,22 @@ const SOCIAL_LINKS = [
 /**
  * @returns {JSX.Element}
  */
-export const Hero = () => (
+export const Hero = () => {
+  const shouldReduce = useReducedMotion();
+
+  const lineVariants = {
+    hidden: shouldReduce ? {} : { opacity: 0, y: 30, filter: "blur(12px)" },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: shouldReduce
+        ? { duration: 0 }
+        : { delay: 0.3 + i * 0.12, duration: 0.9, ease: EASE },
+    }),
+  };
+
+  return (
   <section className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden px-6">
     {/* Conic light beam */}
     <div
@@ -109,7 +111,7 @@ export const Hero = () => (
         custom={0}
         initial="hidden"
         animate="visible"
-        variants={LINE_VARIANTS}
+        variants={lineVariants}
         className="mb-6 flex justify-center"
       >
         <span className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/[0.06] px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-accent">
@@ -122,8 +124,8 @@ export const Hero = () => (
         custom={1}
         initial="hidden"
         animate="visible"
-        variants={LINE_VARIANTS}
-        className="font-heading text-[clamp(3rem,8vw,8rem)] font-bold leading-[0.92] tracking-tight text-content"
+        variants={lineVariants}
+        className="font-heading text-[clamp(2.5rem,8vw,8rem)] font-bold leading-[0.92] tracking-tight text-content"
       >
         Darpan
         <br />
@@ -134,7 +136,7 @@ export const Hero = () => (
         custom={2}
         initial="hidden"
         animate="visible"
-        variants={LINE_VARIANTS}
+        variants={lineVariants}
         className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-content-secondary sm:text-lg"
       >
         I architect and ship production web applications, headless content
@@ -146,7 +148,7 @@ export const Hero = () => (
         custom={3}
         initial="hidden"
         animate="visible"
-        variants={LINE_VARIANTS}
+        variants={lineVariants}
         className="mt-4 font-mono text-xs tracking-wide text-content-muted"
       >
         Currently at{" "}
@@ -166,14 +168,14 @@ export const Hero = () => (
         custom={4}
         initial="hidden"
         animate="visible"
-        variants={LINE_VARIANTS}
+        variants={lineVariants}
         className="mt-12"
       >
         <a
           href="#expertise"
           onClick={(e) => {
             e.preventDefault();
-            document.querySelector("#expertise")?.scrollIntoView({ behavior: "smooth" });
+            scrollTo("#expertise");
           }}
           className="group inline-flex items-center gap-3 rounded-full border border-accent/20 bg-accent/[0.04] pl-6 pr-2 py-2 font-mono text-sm text-accent transition-all duration-500 hover:border-accent/45 hover:bg-accent/[0.08] active:scale-[0.98] cursor-pointer"
           style={{ transitionTimingFunction: "cubic-bezier(0.32,0.72,0,1)" }}
@@ -267,7 +269,7 @@ export const Hero = () => (
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 + index * 0.1, duration: 0.6, ease: EASE }}
-            className="text-content-muted transition-colors duration-200 hover:text-accent cursor-pointer"
+            className="inline-flex h-11 w-11 items-center justify-center text-content-muted transition-colors duration-200 hover:text-accent cursor-pointer"
           >
             {link.icon}
           </m.a>
@@ -275,4 +277,5 @@ export const Hero = () => (
       </m.div>
     </div>
   </section>
-);
+  );
+};
