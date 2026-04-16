@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/contact";
 import { MotionProvider } from "@/components/motion-provider";
+import { SwRegister } from "./sw-register";
 import "./globals.css";
 
 const SmoothScroll = dynamic(
@@ -73,6 +74,15 @@ export const metadata = {
     creator: "@dcoder_me",
   },
   metadataBase: new URL("https://dcoder.me"),
+  themeColor: "#050505",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "DCoder",
+  },
+  icons: {
+    apple: "/icons/icon.svg",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -82,6 +92,7 @@ export default function RootLayout({ children }) {
         className={`${syne.variable} ${outfit.variable} ${jetbrainsMono.variable} font-body antialiased bg-surface text-content`}
       >
         <MotionProvider>
+          <SwRegister />
           <SmoothScroll />
           <CursorSpotlight />
           <Nav />
