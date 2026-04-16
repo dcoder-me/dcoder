@@ -29,12 +29,14 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata = {
   title: "DCoder",
   description:
-    "Full-stack web developer building scalable applications with React, Next.js, and modern cloud architecture. Specializing in headless CMS, SaaS products, and AI-integrated solutions.",
+    "Full-stack web and mobile developer building scalable applications with React, Next.js, and React Native. Specializing in headless CMS, SaaS products, and AI-integrated solutions.",
   keywords: [
     "Darpan Chakraborty",
     "full-stack developer",
     "React",
     "Next.js",
+    "React Native",
+    "mobile developer",
     "SaaS",
     "Prisma",
     "PostgreSQL",
@@ -44,9 +46,9 @@ export const metadata = {
   ],
   authors: [{ name: "Darpan Chakraborty" }],
   openGraph: {
-    title: "Darpan Chakraborty — Full-Stack Web Developer",
+    title: "Darpan Chakraborty — Full-Stack Web & Mobile Developer",
     description:
-      "Building scalable web applications with React, Next.js, and modern cloud architecture.",
+      "Building scalable web and mobile applications with React, Next.js, and React Native.",
     url: "https://dcoder.me",
     siteName: "dcoder.me",
     locale: "en_US",
@@ -54,9 +56,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Darpan Chakraborty — Full-Stack Web Developer",
+    title: "Darpan Chakraborty — Full-Stack Web & Mobile Developer",
     description:
-      "Building scalable web applications with React, Next.js, and modern cloud architecture.",
+      "Building scalable web and mobile applications with React, Next.js, and React Native.",
     creator: "@dcoder_me",
   },
   metadataBase: new URL("https://dcoder.me"),
