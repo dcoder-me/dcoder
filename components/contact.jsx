@@ -80,7 +80,7 @@ export const Contact = () => (
 export const Footer = () => (
   <footer className="px-6 pb-8 pt-16">
     <div className="mx-auto flex max-w-6xl flex-col items-center gap-6">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1 sm:gap-2">
         <SocialLink
           href="https://github.com/dcoder-me"
           label="GitHub"
